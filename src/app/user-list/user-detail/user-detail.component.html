@@ -1,0 +1,55 @@
+<form #userForm="ngForm" *ngIf="user">
+  
+    <div class="form-group">
+              <label for="surname">Фамилия</label>
+              <input id="surname" class="form-control" [(ngModel)]="user.surname" name="surname" #surname="ngModel" placeholder="Фамилия" required />
+    </div> 
+
+    <div class="form-group">
+              <label for="name">Имя</label>
+              <input id="name" class="form-control" [(ngModel)]="user.name" name="name" #name="ngModel" placeholder="Имя" required />
+    </div>
+
+    <div class="form-group">
+              <label for="patronymic">Отчество</label>
+              <input id="patronymic" class="form-control" [(ngModel)]="user.patronymic" name="patronymic" #patronymic="ngModel" placeholder="Отчество" />
+    </div>
+  
+    <div class="form-group">
+              <label for="phoneNumber">Телефон</label>
+              <input id="phoneNumber" class="form-control" [(ngModel)]="user.phoneNumber" name="phoneNumber" #phoneNumber="ngModel" placeholder="Телефон" />
+    </div>
+  
+    <div class="form-group">
+              <label for="mail">Почта</label>
+              <input id="mail" class="form-control" [(ngModel)]="user.mail" name="mail" #mail="ngModel" placeholder="Почта" />
+    </div>
+  
+    <div class="form-group">
+              <label for="rating">Рейтинг</label>
+              <ngb-rating id="rating"  class="form-control-plaintext" [(ngModel)]="user.rating" name="rating" #rating="ngModel" max="5" resettable="true"></ngb-rating>
+    </div>
+  
+    <div class="form-group">
+          <label for="dateOfBirth">Дата рождения</label>
+          <div class="input-group">
+          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dateOfBirth" #dateOfBirth="ngModel" [(ngModel)]="user.dateOfBirth" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+  
+    <div class="form-group">
+              <label for="vacation">Отпуск </label>
+              <input type="checkbox" id="vacation" [(ngModel)]="user.vacation" class="form-check-label" name="vacation" #vacation="ngModel" placeholder="В отпуске" />
+    </div>
+    <div class="form-group">
+
+        <button class="btn btn-danger btn-block" (click)="delete(user)">Удалить</button> 
+        <hr> <div class="text-right">
+            <button class="btn" (click)="goBack()">Отмена</button>
+            <button class="btn btn-outline-secondary" (click)="save()">Сохранить</button>        
+        </div>
+    </div>
+</form>

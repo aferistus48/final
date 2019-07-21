@@ -1,0 +1,39 @@
+<button class="btn btn-secondary" (click)="addUser()">Добавить</button>
+<table class="table table-striped">
+  <thead>     
+    <tr>
+      <th scope="col" sortable="id" (sort)="onSort($event)">#</th>
+      <th scope="col" sortable="surname" (sort)="onSort($event)">ФИО</th>
+      <th scope="col" sortable="phoneNumber" (sort)="onSort($event)">Телефон</th>
+      <th scope="col" sortable="mail" (sort)="onSort($event)">Почта</th>
+      <th scope="col" sortable="rating" (sort)="onSort($event)">Рейтинг</th>
+      <th scope="col" sortable="dateOfBirth" (sort)="onSort($event)">Дата рождения</th>
+      <th scope="col"  sortable="vacation" (sort)="onSort($event)">Отпуск</th>
+      <th>Настройки</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let user of users  | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+      <th>{{ user.id }}</th>
+      <td>{{ user.surname}} {{ user.name }} {{ user.patronymic }}</td>
+      <td>{{ user.phoneNumber }}</td>
+      <td>{{ user.mail }}</td>
+      <td><ngb-rating [(rate)]="user.rating" [readonly]="true" max="5">{{ user.rating }}</ngb-rating></td>
+      <td>{{ user.dateOfBirth | date: 'mediumDate' }}</td>
+      <td>{{ user.vacation | Boolean }}</td>
+      <td>
+        <button class="btn btn-block btn-outline-info" routerLink="/detail/{{user.id}}">Редактировать</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ngb-pagination
+  [(page)]="page"
+  [pageSize]="pageSize"
+  [collectionSize]="8"
+  ></ngb-pagination>
+
+
+      
+    
